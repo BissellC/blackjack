@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blackjack</title>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/screen.css">
-  </head>
-  <body>
-    <h1 class='hello-world'></h1>
-    <script src="/main.js" charset="utf-8"></script>
-  </body>
+	<head lang="en">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Blackjack</title>
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="/screen.css" />
+	</head>
+	<body>
+		<h1>Blackjack</h1>
+
+		<main>
+			<section class="dealer-side">
+				<p class="dealer-text">Dealer:<span class="dealer-score"></span></p>
+				<ul class="dealer-cards"></ul>
+			</section>
+			<section class="player-side">
+				<p class="player-text">Player:<span class="player-score"></span></p>
+				<ul class="player-cards">
+					<li><img src="images/10_of_clubs.svg" /></li>
+				</ul>
+			</section>
+			<section class="buttons">
+				<button class="hit">Hit</button>
+				<button class="stand">Stand</button>
+				<button class="reset">Reset</button>
+			</section>
+		</main>
+
+		<script src="/main.js" charset="utf-8"></script>
+	</body>
 </html>

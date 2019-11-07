@@ -1,7 +1,8 @@
+const suits = ['Spades', 'Clubs', 'Hearts', 'Diamonds']
+
 const main = () => {
-  if (document.querySelector('h1.hello-world')) {
-    document.querySelector('h1.hello-world').textContent = 'Hello, World!'
-  }
+	shuffle()
 }
 
+const shuffle = () => {}
 document.addEventListener('DOMContentLoaded', main)
