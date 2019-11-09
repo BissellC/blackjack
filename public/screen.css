@@ -23,29 +23,30 @@ h1 {
 	background-color: #399e5a;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	padding: 6rem;
+	padding: 3rem;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .player-side {
 	background-color: #26532b;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	padding: 6rem;
+	padding: 3rem;
+	justify-content: center;
+	display: flex;
+	align-items: center;
 }
 img {
 	height: 8rem;
 }
 
-.player-side {
-	display: flex;
-}
-
 .buttons {
 	background-color: #0f4413;
 	display: flex;
-	justify-content: space-around;
-	padding: 4rem;
+	justify-content: center;
+	padding: 2rem;
 	margin-left: 1rem;
 	margin-right: 1rem;
 	margin-bottom: 1rem;
@@ -56,8 +57,21 @@ img {
 .reset {
 	width: 6rem;
 	height: 3rem;
+	margin: 1rem;
 }
 
 li {
 	list-style: none;
+}
+
+.dealer-result-message,
+.player-result-message {
+	margin: 2rem;
+	font-style: italic;
+	font-size: 30px;
+}
+
+.player-text,
+.dealer-text {
+	font-size: 30px;
 }

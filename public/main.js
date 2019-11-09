@@ -82,10 +82,23 @@ const dealCards = () => {
 	let sum = 0
 	for (let i = 0; i < playerHand.length; i++) {
 		sum += playerHand[i].value
-		if (sum >= 22) {
+
+		if (sum === 21 && playerHand.length === 2) {
+			document.querySelector('.player-result-message').textContent =
+				'Blackjack!'
+			document.querySelector('.dealer-result-message').textContent =
+				'Dealer Loses'
+			document.querySelector('.hit').disabled = true
+			document.querySelector('.stand').disabled = true
+			document.querySelector('.card-backs').remove()
+		} else if (sum >= 22) {
 			document.querySelector('.player-result-message').textContent =
 				'Bust! Player Loses'
+			document.querySelector('.dealer-result-message').textContent =
+				'Dealer Wins'
 			document.querySelector('.hit').disabled = true
+			document.querySelector('.stand').disabled = true
+			document.querySelector('.card-backs').remove()
 		}
 	}
 	playerSum = sum
@@ -117,7 +130,54 @@ const stand = () => {
 		document.querySelector('.player-result-message').textContent = 'Push'
 		document.querySelector('.dealer-result-message').textContent = 'Push'
 	}
+	document.querySelector('.card-backs').remove()
+	document.querySelector('.hit').disabled = true
+	document.querySelector('.stand').disabled = true
 }
+
+const reset = () => {
+	deck.length = 0
+	playerHand.length = 0
+	dealerHand.length = 0
+	shuffle()
+	document.querySelector('.player-result-message').textContent = ''
+	document.querySelector('.dealer-result-message').textContent = ''
+	document.querySelector('.hit').disabled = false
+	document.querySelector('.stand').disabled = false
+	document.querySelector('.player-cards').remove()
+	document.querySelector('.dealer-cards').remove()
+	const playerCardHolder = document.createElement('ul')
+	playerCardHolder.className = 'player-cards'
+	document
+		.querySelector('.player-cards-container')
+		.appendChild(playerCardHolder)
+
+	const dealerCardHolder = document.createElement('section')
+	dealerCardHolder.className = 'dealer-cards'
+	document
+		.querySelector('.dealer-cards-container')
+		.appendChild(dealerCardHolder)
+
+	const replaceCardBackContainer = document.createElement('ul')
+	replaceCardBackContainer.className = 'card-backs'
+	document.querySelector('.dealer-cards').appendChild(replaceCardBackContainer)
+
+	const replaceDealerCards = document.createElement('img')
+	replaceDealerCards.src = '/images/card_back.png'
+	document.querySelector('.card-backs').appendChild(replaceDealerCards)
+
+	const replaceDealerCards2 = document.createElement('img')
+	replaceDealerCards2.src = '/images/card_back.png'
+	document.querySelector('.card-backs').appendChild(replaceDealerCards2)
+
+	document.querySelector('.player-score').textContent = ''
+	document.querySelector('.dealer-score').textContent = '??'
+
+	dealCards()
+	dealCards()
+}
+
 document.addEventListener('DOMContentLoaded', main)
 document.querySelector('.hit').addEventListener('click', dealCards)
 document.querySelector('.stand').addEventListener('click', stand)
+document.querySelector('.reset').addEventListener('click', reset)
