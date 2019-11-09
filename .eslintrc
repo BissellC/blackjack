@@ -1,4 +1,7 @@
 {
-  "extends": ['standard'],
-  "rules": {}
+	"extends": ["standard"],
+	"rules": {
+		"no-tabs": "off",
+		"indent": "off"
+	}
 }
