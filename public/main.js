@@ -25,6 +25,7 @@ const main = () => {
 	shuffle()
 	dealCards()
 	dealCards()
+	dealerDealCards()
 }
 
 const getValue = rank => {
@@ -55,6 +56,7 @@ const shuffle = () => {
 		deck[j] = temp
 	}
 	console.log(deck)
+	document.querySelector('.reset').disabled = true
 }
 
 const dealerDealCards = () => {
@@ -85,11 +87,12 @@ const dealCards = () => {
 
 		if (sum === 21 && playerHand.length === 2) {
 			dealerDealCards()
-			dealerDealCards()
+
 			document.querySelector('.card-backs').remove()
 			if (dealerSum === playerSum) {
 				document.querySelector('.player-result-message').textContent = 'Push'
 				document.querySelector('.dealer-result-message').textContent = 'Push'
+				document.querySelector('.reset').disabled = false
 			} else {
 				document.querySelector('.player-result-message').textContent =
 					'Blackjack!'
@@ -97,6 +100,7 @@ const dealCards = () => {
 					'Dealer Loses'
 				document.querySelector('.hit').disabled = true
 				document.querySelector('.stand').disabled = true
+				document.querySelector('.reset').disabled = false
 			}
 		} else if (sum >= 22) {
 			document.querySelector('.player-result-message').textContent =
@@ -105,6 +109,9 @@ const dealCards = () => {
 				'Dealer Wins'
 			document.querySelector('.hit').disabled = true
 			document.querySelector('.stand').disabled = true
+			document.querySelector('.reset').disabled = false
+			document.querySelector('.card-backs').remove()
+			dealerDealCards()
 		}
 	}
 	playerSum = sum
@@ -112,7 +119,6 @@ const dealCards = () => {
 }
 
 const stand = () => {
-	dealerDealCards()
 	dealerDealCards()
 
 	while (dealerSum <= 16) {
@@ -139,6 +145,7 @@ const stand = () => {
 	document.querySelector('.card-backs').remove()
 	document.querySelector('.hit').disabled = true
 	document.querySelector('.stand').disabled = true
+	document.querySelector('.reset').disabled = false
 }
 
 const reset = () => {
@@ -152,7 +159,8 @@ const reset = () => {
 	document.querySelector('.stand').disabled = false
 	document.querySelector('.player-cards').remove()
 	document.querySelector('.dealer-cards').remove()
-	const playerCardHolder = document.createElement('ul')
+
+	const playerCardHolder = document.createElement('section')
 	playerCardHolder.className = 'player-cards'
 	document
 		.querySelector('.player-cards-container')
@@ -164,23 +172,22 @@ const reset = () => {
 		.querySelector('.dealer-cards-container')
 		.appendChild(dealerCardHolder)
 
-	const replaceCardBackContainer = document.createElement('ul')
+	const replaceCardBackContainer = document.createElement('section')
 	replaceCardBackContainer.className = 'card-backs'
-	document.querySelector('.dealer-cards').appendChild(replaceCardBackContainer)
+	document
+		.querySelector('.dealer-cards-container')
+		.appendChild(replaceCardBackContainer)
 
 	const replaceDealerCards = document.createElement('img')
 	replaceDealerCards.src = '/images/card_back.png'
 	document.querySelector('.card-backs').appendChild(replaceDealerCards)
-
-	const replaceDealerCards2 = document.createElement('img')
-	replaceDealerCards2.src = '/images/card_back.png'
-	document.querySelector('.card-backs').appendChild(replaceDealerCards2)
 
 	document.querySelector('.player-score').textContent = ''
 	document.querySelector('.dealer-score').textContent = '??'
 
 	dealCards()
 	dealCards()
+	dealerDealCards()
 }
 
 document.addEventListener('DOMContentLoaded', main)
