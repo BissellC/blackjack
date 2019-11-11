@@ -51,7 +51,7 @@ const shuffle = () => {
 	for (let i = 0; i < deck.length; i++) {
 		const j = Math.floor(Math.random() * 52)
 		const temp = deck[i]
-		deck[j] = deck[i]
+		deck[i] = deck[j]
 		deck[j] = temp
 	}
 	console.log(deck)
@@ -84,13 +84,20 @@ const dealCards = () => {
 		sum += playerHand[i].value
 
 		if (sum === 21 && playerHand.length === 2) {
-			document.querySelector('.player-result-message').textContent =
-				'Blackjack!'
-			document.querySelector('.dealer-result-message').textContent =
-				'Dealer Loses'
-			document.querySelector('.hit').disabled = true
-			document.querySelector('.stand').disabled = true
+			dealerDealCards()
+			dealerDealCards()
 			document.querySelector('.card-backs').remove()
+			if (dealerSum === playerSum) {
+				document.querySelector('.player-result-message').textContent = 'Push'
+				document.querySelector('.dealer-result-message').textContent = 'Push'
+			} else {
+				document.querySelector('.player-result-message').textContent =
+					'Blackjack!'
+				document.querySelector('.dealer-result-message').textContent =
+					'Dealer Loses'
+				document.querySelector('.hit').disabled = true
+				document.querySelector('.stand').disabled = true
+			}
 		} else if (sum >= 22) {
 			document.querySelector('.player-result-message').textContent =
 				'Bust! Player Loses'
@@ -98,7 +105,6 @@ const dealCards = () => {
 				'Dealer Wins'
 			document.querySelector('.hit').disabled = true
 			document.querySelector('.stand').disabled = true
-			document.querySelector('.card-backs').remove()
 		}
 	}
 	playerSum = sum
